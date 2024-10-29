@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { CityQueryService } from './city-query.service';
 import { CreateCityQueryDto } from './dto/create-city-query.dto';
 import { UpdateCityQueryDto } from './dto/update-city-query.dto';
@@ -23,7 +31,10 @@ export class CityQueryController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCityQueryDto: UpdateCityQueryDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateCityQueryDto: UpdateCityQueryDto,
+  ) {
     return this.cityQueryService.update(+id, updateCityQueryDto);
   }
 
