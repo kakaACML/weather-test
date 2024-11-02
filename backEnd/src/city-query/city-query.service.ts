@@ -1,26 +1,37 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
+import { HttpService } from '@nestjs/axios';
+import { AxiosError } from 'axios';
+import { HEFENG_KEY } from '@/enums';
+import { catchError, firstValueFrom, throwError } from 'rxjs';
+import { responseReplaceMessage } from '@/utils';
+
 import { CreateCityQueryDto } from './dto/create-city-query.dto';
-import { UpdateCityQueryDto } from './dto/update-city-query.dto';
 
 @Injectable()
 export class CityQueryService {
-  create(createCityQueryDto: CreateCityQueryDto) {
-    return 'This action adds a new cityQuery';
-  }
+  constructor(private readonly httpService: HttpService) {}
 
-  findAll() {
-    return `This action returns all cityQuery`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} cityQuery`;
-  }
-
-  update(id: number, updateCityQueryDto: UpdateCityQueryDto) {
-    return `This action updates a #${id} cityQuery`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} cityQuery`;
+  async findAll(createCityQueryDto: CreateCityQueryDto) {
+    const { data } = await firstValueFrom(
+      this.httpService
+        .get('https://geoapi.qweather.com/v2/city/lookup', {
+          params: {
+            key: HEFENG_KEY,
+            location: createCityQueryDto.location,
+          },
+        })
+        .pipe(
+          catchError((error: AxiosError) => {
+            // 抛出全局错误
+            return throwError(() => new Error('请求失败'));
+          }),
+        ),
+    );
+    const { code, ...other } = data;
+    if (code === '200') {
+      return responseReplaceMessage({ ...other });
+    } else {
+      throw new BadRequestException('获取数据失败');
+    }
   }
 }

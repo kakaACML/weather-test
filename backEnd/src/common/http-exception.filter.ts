@@ -8,6 +8,17 @@ import {
 import { Response } from 'express';
 import { responseReplaceMessage } from '@/utils';
 
+// 获取特定异常信息
+const _getMessage = (exception: HttpException) => {
+  const response = exception.getResponse();
+
+  if (!response) return false;
+
+  if (typeof response === 'string') return response;
+
+  return response['message'] || false;
+};
+
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: HttpException, host: ArgumentsHost) {
@@ -28,7 +39,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     // 获取错误信息，判断是HTTP异常还是服务器异常
     const msg =
       exception instanceof HttpException
-        ? exception.message
+        ? _getMessage(exception) || exception.message
         : '服务器内部错误!';
 
     response

@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { HttpExceptionFilter } from '@/common/http-exception.filter';
 
 async function bootstrap() {
@@ -8,6 +8,10 @@ async function bootstrap() {
 
   // 启用CORS
   app.enableCors();
+
+  // 全局校验管道
+  app.useGlobalPipes(new ValidationPipe());
+
   // 全局http异常过滤器
   app.useGlobalFilters(new HttpExceptionFilter());
 

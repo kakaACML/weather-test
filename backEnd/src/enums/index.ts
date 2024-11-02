@@ -32,3 +32,9 @@ export const REPLACE_RESPONSE_CODE = {
   500: '5000',
   501: '5001',
 };
+
+/**
+ * 和风密钥
+ */
+
+export const HEFENG_KEY = '0bf09fdddeaf4b598ef2da052773f3f4';
