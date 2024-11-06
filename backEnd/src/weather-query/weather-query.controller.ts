@@ -17,4 +17,10 @@ export class WeatherQueryController {
   async find7d(@Query() createWeatherQueryDto: CreateWeatherQueryDto) {
     return await this.weatherQueryService.find7d(createWeatherQueryDto);
   }
+
+  // 获取近24h天气
+  @Get('24h')
+  async find24h(@Query() createWeatherQueryDto: CreateWeatherQueryDto) {
+    return await this.weatherQueryService.find24h(createWeatherQueryDto);
+  }
 }

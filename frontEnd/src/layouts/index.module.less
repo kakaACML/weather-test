@@ -1,0 +1,142 @@
+.layout {
+  width: 100vw;
+  height: 100vh;
+  background-color: #202124;
+  overflow: auto;
+  position: relative;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 50px;
+  background-clip: content-box;
+}
+
+.search {
+  background-color: #5b5b5b;
+  height: 44px;
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  :global {
+    .ant-select-selector {
+      border-radius: 20px;
+      background-color: #202123 !important;
+      border: none !important;
+      color: #ffffff8c;
+    }
+  }
+}
+
+.weatherMain {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.weatherTitle {
+  padding-top: 20px;
+  color: white;
+}
+
+.titleDec {
+  color: #ffffff8c;
+  margin: 0 0 11px;
+  font-size: 12px;
+  color: #ffffff8c;
+  font-weight: bolder;
+}
+
+.titleLocation {
+  font-size: 22px;
+  font-weight: normal;
+  margin-right: 30px;
+  font-weight: bolder;
+}
+
+.now {
+  padding: 40px 0 20px;
+}
+
+.cityWeatherCurrent {
+  background-image: linear-gradient(225deg, #8089a5, #424c66);
+  border-radius: 16px;
+}
+
+.currentWeather {
+  padding: 24px 30px;
+  background-size: 540px auto;
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+.currentTime {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 300;
+  color: #ffffff8c;
+  text-align: right;
+}
+
+.currentLive {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.liveImage {
+  width: 50%;
+  text-align: right;
+}
+.liveText {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  width: 50%;
+  max-width: 50%;
+  margin-left: 10px;
+  p {
+    margin: 0;
+  }
+}
+
+.currentBasic {
+  height: 84px;
+  padding: 0 24px;
+  border-radius: 12px;
+  background-color: #a0a6b41a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.basicItem {
+  line-height: 1.2;
+  text-align: center;
+  p {
+    margin: 0;
+  }
+  p:nth-child(1) {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+    white-space: nowrap;
+  }
+  p:nth-child(2) {
+    margin-top: 7px;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 16px;
+    color: #ffffff8c;
+  }
+}
+
+.h24 {
+  padding-bottom: 20px;
+}
+.d7 {
+  padding-bottom: 20px;
+}
